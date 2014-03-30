@@ -1,0 +1,19 @@
+- content_for :stylesheets do
+  = stylesheet_link_tag 'spending_report'
+
+%h1 Spending Report
+
+.report
+  %h2 Metrics
+  .metrics
+    = @report.metrics[:total].render(self, description: 'USD')
+
+  %h2 Charts
+  = render 'spending_per_day_chart', query: @report.spending_per_day
+  %div{ style: 'display: inline-block;' }
+    = render 'spending_per_category_chart', query: @report.spending_per_category
+  %div{ style: 'display: inline-block;' }
+    = render 'spending_per_month_chart', query: @report.spending_per_month
+
+  %h2 Data
+  = render 'spending_summary_table', query: @report.spending

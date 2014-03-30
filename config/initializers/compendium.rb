@@ -1,0 +1,1 @@
+Compendium.config.chart_provider = :AmCharts

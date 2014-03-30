@@ -1,0 +1,9 @@
+<%=
+  query.render_table(self) do |t|
+    t.override_heading :category_name, "Category"
+    t.override_heading :created_at, "Date"
+
+    t.format(:created_at) { |val| val.strftime("%Y-%b-%d") rescue "" }
+    t.format(:amount) { |val| number_to_currency(val) }
+  end
+%>

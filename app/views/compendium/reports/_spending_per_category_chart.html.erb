@@ -1,0 +1,14 @@
+<%=
+  query.render_chart(self, :pie) do |c|
+    add_title "Spending Per Category"
+
+    c.dimensions = "600x400"
+    c.label_radius = 15
+    c.margin_bottom = -100
+    c.margin_top = -100
+    c.margin_left = -50
+    c.margin_right = 0
+
+    c.number_formatter = { precision: 2, decimalSeparator: '.', thousandsSeparator: ',' }
+  end
+%>

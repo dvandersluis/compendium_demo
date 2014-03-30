@@ -1,0 +1,43 @@
+.report
+{
+  table.results
+  {
+    border-collapse: collapse;
+
+    th, td
+    {
+      padding: 3px 5px;
+    }
+
+    th
+    {
+      background: gray;
+    }
+
+    td
+    {
+      border: 1px solid lightgray;
+      text-align: center;
+    }
+
+    tbody
+    {
+      td:nth-child(2)
+      {
+        text-align: right;
+      }
+    }
+  }
+
+  div.metrics
+  {
+    div.metric
+    {
+      .metric-data
+      {
+        font-size: 54px;
+      }
+    }
+  }
+}
+

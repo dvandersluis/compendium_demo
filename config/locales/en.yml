@@ -1,0 +1,7 @@
+en:
+  options:
+    starting_on: "Start Date"
+    ending_on: "End Date"
+
+  spending:
+    total: "Total Spending"

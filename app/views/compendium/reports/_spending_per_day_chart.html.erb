@@ -1,0 +1,27 @@
+<%=
+  query.render_chart(self, :serial) do |c|
+    add_title "Spending Per Day"
+    c.dimensions = "800x400"
+    c.data_date_format = "YYYY-MM-DD"
+
+    graphs.new(:amount, :smoothedLine) do |g|
+      g.id = "amount"
+      g.title = "Amount"
+    end
+
+    category_axis do |a|
+      a.parse_dates = true
+      a.grid_alpha = 0.1
+      a.axis_alpha = 0
+      a.grid_position = 'start'
+      a.position = 'top'
+    end
+
+    scrollbar do |s|
+      s.graph = 'amount'
+      s.scrollbar_height = 30
+    end
+
+    cursor {}
+  end
+%>
