@@ -9,7 +9,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 
 gem 'compendium'
-gem 'amcharts.rb'
+gem 'compendium-amcharts', '~> 1.0.1'
 
 gem 'better_errors'
 gem 'binding_of_caller'
+gem 'quiet_assets'

@@ -1,6 +1,10 @@
 <%=
-  query.render_chart(self, :pie) do |c|
-    add_title "Spending Per Category"
+  SpendingReport.queries[:spending_per_category].render_chart(self, :pie) do |c|
+    add_title "Spending Per Category\nLOADED BY AJAX ON DEMAND"
+    loading_indicator!
+
+    # Defer loading the data source until requested
+    c.data_source.defer!
 
     c.dimensions = "600x400"
     c.label_radius = 15
@@ -8,7 +12,13 @@
     c.margin_top = -100
     c.margin_left = -50
     c.margin_right = 0
+    c.start_duration = 0
 
     c.number_formatter = { precision: 2, decimalSeparator: '.', thousandsSeparator: ',' }
+
+    listeners.new(:rendered, :after_render)
+    listeners.new(:dataUpdated, :after_update)
   end
 %>
+
+<button onclick="AmCharts.charts[1].remoteProvider.load()" style="font-size: 130%">Load Spending Per Category Data</button>

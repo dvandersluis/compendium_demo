@@ -1,6 +1,18 @@
 - content_for :stylesheets do
   = stylesheet_link_tag 'spending_report'
 
+:javascript
+  function after_render(chart)
+  {
+    console.log("render done", chart)
+  }
+
+  function after_update(chart)
+  {
+    console.log("update done", chart)
+  }
+
+
 %h1 Spending Report
 
 .report

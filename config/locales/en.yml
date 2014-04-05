@@ -1,4 +1,6 @@
 en:
+  chart_data_loading: "Loading..."
+
   options:
     starting_on: "Start Date"
     ending_on: "End Date"

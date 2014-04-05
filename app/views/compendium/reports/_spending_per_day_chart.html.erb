@@ -1,27 +1,32 @@
 <%=
-  query.render_chart(self, :serial) do |c|
-    add_title "Spending Per Day"
-    c.dimensions = "800x400"
-    c.data_date_format = "YYYY-MM-DD"
+query.render_chart(self, :serial) do |c|
+  add_title "Spending Per Day\nLOADED WITH INLINE DATA"
+  loading_indicator!
 
-    graphs.new(:amount, :smoothedLine) do |g|
-      g.id = "amount"
-      g.title = "Amount"
-    end
+  c.dimensions = "800x400"
+  c.data_date_format = "YYYY-MM-DD"
 
-    category_axis do |a|
-      a.parse_dates = true
-      a.grid_alpha = 0.1
-      a.axis_alpha = 0
-      a.grid_position = 'start'
-      a.position = 'top'
-    end
-
-    scrollbar do |s|
-      s.graph = 'amount'
-      s.scrollbar_height = 30
-    end
-
-    cursor {}
+  graphs.new(:amount, :smoothedLine) do |g|
+    g.id = "amount"
+    g.title = "Amount"
   end
+
+  category_axis do |a|
+    a.parse_dates = true
+    a.grid_alpha = 0.1
+    a.axis_alpha = 0
+    a.grid_position = 'start'
+    a.position = 'top'
+  end
+
+  scrollbar do |s|
+    s.graph = 'amount'
+    s.scrollbar_height = 30
+  end
+
+  cursor {}
+
+  listeners.new(:rendered, :after_render)
+  listeners.new(:dataUpdated, :after_update)
+end
 %>

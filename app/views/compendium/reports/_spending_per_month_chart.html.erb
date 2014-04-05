@@ -1,15 +1,23 @@
 <%=
-  query.render_chart(self, :pie) do |c|
-    add_title "Spending Per Month"
+# Load the query remotely, with the given parameters
+query.render_chart(self, :pie, params: { starting_on: '2014-02-01' }, remote: true) do |c|
+  add_title "Spending Per Month\nLOADED REMOTELY"
+  loading_indicator!
 
-    c.dimensions = "600x400"
-    c.label_radius = 15
-    c.margin_bottom = -100
-    c.margin_top = -100
-    c.margin_left = -50
-    c.margin_right = 0
+  c.dimensions = "600x400"
+  c.label_radius = 15
+  c.margin_bottom = -100
+  c.margin_top = -100
+  c.margin_left = -50
+  c.margin_right = 0
 
-    c.colors = %w(#0E51A7 #640CAB #4DDE00)
-    c.number_formatter = { precision: 2, decimalSeparator: '.', thousandsSeparator: ',' }
-  end
+  # Disable the animation
+  c.start_duration = 0
+
+  c.colors = %w(#0E51A7 #640CAB #4DDE00)
+  c.number_formatter = { precision: 2, decimalSeparator: '.', thousandsSeparator: ',' }
+
+  listeners.new(:rendered, :after_render)
+  listeners.new(:dataUpdated, :after_update)
+end
 %>
